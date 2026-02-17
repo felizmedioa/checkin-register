@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro de Asistencia</title>
+  <meta name="description" content="Formulario de registro de asistencia con ubicación y captura de foto" />
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- App CSS -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <div class="app-wrapper">
+    <!-- Header Corporativo -->
+    <div class="header-logo">
+      <img src="./assets/logo.jpeg" alt="Logo de la Empresa">
+    </div>
+    <header class="app-header">
+      <div class="header-brand">
+        <h1 class="company-name">Vestidos Victoria</h1>
+        <p id="companyRuc" class="company-ruc">RUC: —</p>
+      </div>
+      <div class="header-divider"></div>
+      <div class="header-info">
+        <p class="header-title">Registro de Asistencia</p>
+        <p id="headerDateTime" class="header-datetime"></p>
+      </div>
+    </header>
+
+    <!-- Form -->
+    <main class="form-container">
+      <form id="attendanceForm" novalidate>
+
+        <!-- Trabajadora -->
+        <div class="form-group">
+          <label for="trabajadora">Trabajadora</label>
+          <select id="trabajadora" name="trabajadora" required>
+            <option value="" disabled selected>Selecciona una trabajadora</option>
+          </select>
+        </div>
+
+        <!-- DNI (auto-relleno) -->
+        <div class="form-group">
+          <label for="dni">DNI</label>
+          <input type="text" id="dni" name="dni" placeholder="—" disabled />
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" id="btnSubmit" class="btn btn-primary btn-full">
+          Registrar Asistencia
+        </button>
+
+        <!-- Status message during capture -->
+        <p id="submitStatus" class="submit-status"></p>
+      </form>
+    </main>
+
+    <!-- Canvas oculto para captura de foto -->
+    <canvas id="photoCanvas" style="display:none;"></canvas>
+    <!-- Video oculto para stream de cámara -->
+    <video id="cameraStream" autoplay playsinline style="display:none;"></video>
+
+    <!-- Toast -->
+    <div id="toast" class="toast" aria-live="polite"></div>
+  </div>
+
+  <!-- App JS (ES Modules) -->
+  <script type="module" src="js/main.js"></script>
+</body>
+
+</html>

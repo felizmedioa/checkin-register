@@ -1,0 +1,33 @@
+# Dependencias
+node_modules/
+apps-script/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDEs y editores
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Entorno
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# Archivos temporales
+*.tmp
+*.bak
+*.cache
+
+# Build / output
+dist/
+build/

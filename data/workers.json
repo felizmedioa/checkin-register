@@ -1,0 +1,28 @@
+{
+    "casa-vestidos": {
+        "nombresocial": "La Casa de los Vestidos",
+        "nombrejuridico": "CASA DE LOS VESTIDOS VICTORIAS E.I.R.L.",
+        "ruc": "20613728393",
+        "trabajadora1": {
+            "nombre": "TAPIA ESPINOZA CARMEN MONICA",
+            "dni": "70283384"
+        },
+        "trabajadora2": {
+            "nombre": "PEÑA GARCIA EVELIN TATIANA",
+            "dni": "76450151"
+        }
+    },
+    "victoria-vestidos": {
+        "nombresocial": "Vestidos Victoria",
+        "nombrejuridico": "CRISTOBAL QUISPE ISABEL AGUIDA",
+        "ruc": "10422197091",
+        "trabajadora1": {
+            "nombre": "BERROCAL MORALES FIORELA RAQUEL",
+            "dni": "75616278"
+        },
+        "trabajadora2": {
+            "nombre": "CUMAPA ROJAS JUANA VERONICA",
+            "dni": "47775521"
+        }
+    }
+}
