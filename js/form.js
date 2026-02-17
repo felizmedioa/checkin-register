@@ -23,12 +23,22 @@ function parseTrabajadoras(data) {
 
 // Puebla el select de trabajadoras
 function populateSelect(selectEl, lista) {
-    lista.forEach((t, i) => {
+    lista.forEach((info, pos) => {
         const option = document.createElement("option");
-        option.value = i;
-        option.textContent = t.nombre;
+        option.value = pos;
+        option.textContent = info.nombre;
         selectEl.appendChild(option);
     });
+}
+
+//Auto selecciona un registro de entrada/salida
+function selectRegistro(registroEl, hour) {
+    let option = registroEl.options;
+    if(hour <= 12 && hour >= 0) {
+        option[1].selected = true;
+    } else if(hour > 12 && hour <= 23) {
+        option[2].selected = true;
+    }
 }
 
 // Inicializa el formulario
@@ -39,6 +49,7 @@ export async function initForm() {
     const form = document.getElementById("attendanceForm");
     const btn = document.getElementById("btnSubmit");
     const statusEl = document.getElementById("submitStatus");
+    const registroEl = document.getElementById("registro");
 
     // Cargar datos del local
     try {
@@ -54,9 +65,14 @@ export async function initForm() {
         // Mostrar RUC en el header
         rucEl.textContent = `RUC: ${localData.ruc}`;
 
+
+        
         // Obtener trabajadoras y poblar select
         trabajadoras = parseTrabajadoras(localData);
         populateSelect(selectEl, trabajadoras);
+
+        
+
     } catch (err) {
         showStatus(statusEl, "Error al cargar datos de trabajadoras.", "error");
         return;
@@ -68,6 +84,11 @@ export async function initForm() {
         dniEl.value = idx !== "" ? trabajadoras[idx].dni : "";
     });
 
+
+    //Auto selecciona un registro de entrada/salida
+    const hour = new Date().getHours();
+    selectRegistro(registroEl, hour);
+
     // Envío del formulario
     form.addEventListener("submit", async (e) => {
         e.preventDefault();
@@ -77,6 +98,8 @@ export async function initForm() {
             showStatus(statusEl, "Selecciona una trabajadora.", "error");
             return;
         }
+
+        let evento = registroEl.value;
 
         const selected = trabajadoras[selectEl.value];
         setLoading(btn, true);
@@ -94,6 +117,7 @@ export async function initForm() {
                 local: localData.nombrejuridico,
                 nombrecompleto: selected.nombre,
                 dni: selected.dni,
+                evento,
                 ubicacion,
                 foto,
                 fechaHora,
@@ -146,7 +170,7 @@ function setLoading(btn, loading) {
 function showToast(nombre, fechaHora) {
     const toast = document.getElementById("toast");
     const fecha = new Date(fechaHora);
-    const hora = fecha.toLocaleTimeString("es-PE", { hour: "2-digit", minute: "2-digit" });
+    const hora = fecha.toLocaleTimeString("es-PE", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
     toast.innerHTML = `
         <div class="toast-title">Registro exitoso</div>
         <div>${nombre}</div>
