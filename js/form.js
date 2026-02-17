@@ -36,8 +36,11 @@ function selectRegistro(registroEl, hour) {
     let option = registroEl.options;
     if(hour <= 12 && hour >= 0) {
         option[1].selected = true;
-    } else if(hour > 12 && hour <= 23) {
+        option[2].selected = false;
+    } else {
+        option[1].selected = false;
         option[2].selected = true;
+
     }
 }
 
